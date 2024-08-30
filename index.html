@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo app</title>
+    <link href="./output.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container bg-white w-[500px] border mx-auto p-6 mt-8 rounded">
+      <h1 class="text-3xl text-center text-purple-500">Todo app</h1>
+      <div class="flex justify-between gap-3 mt-4">
+        <input
+          type="text"
+          class="border-2 border-gray-400 p-1.5 w-full rounded"
+        />
+        <button
+          class="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-5 rounded"
+        >
+          Add
+        </button>
+      </div>
+      <div class="error ml-3 my-2 text-red-500 "></div>
+
+      <div class="todoItems"></div>
+    </div>
+  </body>
+</html>
