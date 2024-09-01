@@ -52,13 +52,19 @@ function deleteTodo(index) {
 let editTodoindex;
 // edit todo function ...............
 function editTodo(index) {
-  input.value = todoArray[index];
-  todoItems.children[index].style.pointerEvents = "none";
-  todoItems.children[index].style.opacity = "0.5";
-  isEditTodo = true;
-  button.innerText = "Save";
-  editTodoindex = index;
-  error.innerText = "";
+  if (isEditTodo == false) {
+    isEditTodo = true;
+    input.value = todoArray[index];
+    todoItems.children[index].style.pointerEvents = "none";
+    todoItems.children[index].style.opacity = "0.5";
+    button.innerText = "Save";
+    editTodoindex = index;
+    error.innerText = "";
+  } else {
+    error.innerText = "Please save todo";
+  }
+
+  console.log(isEditTodo);
 }
 // save  todo function ..............
 function saveTodo() {
@@ -75,5 +81,5 @@ function saveTodo() {
     error.innerText = "";
   }
 }
-// call function to show todo on onload the page
+// call function to show todo on load the page
 showTodo();
