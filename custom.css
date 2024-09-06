@@ -1,0 +1,18 @@
+#todo.complete {
+  text-decoration: line-through;
+}
+#todo {
+  font-size: 18px;
+}
+#checkbox {
+  width: 16.5px;
+  height: 16.5px;
+  border: .5px solid #aaa;
+  border-radius: 50%;
+  background-position: center;
+  background-size: 100%;
+
+}
+#checkbox.complete {
+  background-image: url("https://cdn-icons-png.freepik.com/256/5610/5610944.png?semt=ais_hybrid");
+}

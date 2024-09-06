@@ -12,8 +12,8 @@ button.addEventListener("click", () => {
   }
 });
 function createItem() {
-  let todoItem = input.value;
-  if (todoItem == "") {
+  let todoItem = { todo_item: input.value, complete: false };
+  if (input.value == "") {
     error.innerText = "Please enter todo.";
   } else {
     todoArray.push(todoItem);
@@ -28,20 +28,39 @@ function createItem() {
 function showTodo() {
   todoArray.forEach((todo, index) => {
     let items = document.createElement("div");
-    items.innerHTML = ` <div class="flex gap-3 justify-between mt-3">
-                <div class="flex-1  ml-3 max-w-52 break-words "><p>${todo}</p></div>
-                <div>
-                <button class="bg-green-500 hover:bg-green-600 text-white py-1.5 px-5 rounded" onClick="editTodo(${index})">
-                  Edit
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 text-white py-1.5 px-5 mx-1 rounded" onClick="deleteTodo(${index})">
-                  Delete
-                </button>
-                </div>
-              </div>`;
+    items.innerHTML = `<div class="flex gap-3 justify-between mt-3">  
+                     <div class="flex flex-1 items-center justify-start gap-3  max-w-52 break-words "><span  id="checkbox" 
+                     class=${
+                       todo.complete && "complete"
+                     } onClick="competeTodo(${index})" ></span>
+                     <p id="todo" class=${todo.complete && "complete"}  >${
+      todo.todo_item
+    }</p>
+                    </div>
+                    <div class="flex justify-center gap-6 mr-3">
+                      <button class= py-1.5 px-5 " onClick="editTodo(${index})">
+                       <i class="fa-solid fa-pen-to-square text-green-500 hover:text-green-600"></i>
+                      </button>
+                     <button class=" py-1.5  " onClick="deleteTodo(${index})">
+                     <i class="fa-solid fa-trash text-red-500 hover:text-red-600"></i>
+                     </button>
+                    </div>
+                </div>`;
     todoItems.appendChild(items);
   });
 }
+// compete todo function .............
+function competeTodo(index) {
+  if (todoArray[index].complete == false) {
+    todoArray[index].complete = true;
+  } else {
+    todoArray[index].complete = false;
+  }
+  localStorage.setItem("todoItem", JSON.stringify(todoArray));
+  todoItems.innerHTML = "";
+  showTodo();
+}
+
 // delete todo function .............
 function deleteTodo(index) {
   todoItems.innerHTML = "";
@@ -63,8 +82,6 @@ function editTodo(index) {
   } else {
     error.innerText = "Please save todo";
   }
-
-  console.log(isEditTodo);
 }
 // save  todo function ..............
 function saveTodo() {
