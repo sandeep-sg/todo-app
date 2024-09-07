@@ -39,7 +39,7 @@ function showTodo() {
                     </div>
                     <div class="flex justify-center gap-6 mr-3">
                       <button class= py-1.5 px-5 " onClick="editTodo(${index})">
-                       <i class="fa-solid fa-pen-to-square text-green-500 hover:text-green-600"></i>
+                       <i class="fa-solid fa-pen-to-square text-pink-500 hover:text-pink-600"></i>
                       </button>
                      <button class=" py-1.5  " onClick="deleteTodo(${index})">
                      <i class="fa-solid fa-trash text-red-500 hover:text-red-600"></i>
@@ -73,7 +73,7 @@ let editTodoindex;
 function editTodo(index) {
   if (isEditTodo == false) {
     isEditTodo = true;
-    input.value = todoArray[index];
+    input.value = todoArray[index].todo_item;
     todoItems.children[index].style.pointerEvents = "none";
     todoItems.children[index].style.opacity = "0.5";
     button.innerText = "Save";
@@ -89,7 +89,7 @@ function saveTodo() {
     error.innerText = "Please enter todo.";
   } else {
     todoItems.innerHTML = "";
-    todoArray[editTodoindex] = input.value;
+    todoArray[editTodoindex].todo_item = input.value;
     localStorage.setItem("todoItem", JSON.stringify(todoArray));
     showTodo();
     input.value = "";
